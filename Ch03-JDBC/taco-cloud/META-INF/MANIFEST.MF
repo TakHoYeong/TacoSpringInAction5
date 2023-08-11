@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: taco-cloud
+Bundle-SymbolicName: taco-cloud
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: taco.cloud
+Export-Package: tacos,
+ tacos.data,
+ tacos.web
