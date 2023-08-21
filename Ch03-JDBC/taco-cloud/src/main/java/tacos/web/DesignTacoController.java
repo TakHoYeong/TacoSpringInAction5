@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Slf4j
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("order")
+@SessionAttributes("order") // 저장 공간:session(서블릿 컨텍스트)
 public class DesignTacoController {
 	private final IngredientRepository ingredientRepo;
 	
