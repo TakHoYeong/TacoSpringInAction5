@@ -128,14 +128,17 @@ public class RestExamples {
   @Bean
   public CommandLineRunner traversonSaveIngredient(TacoCloudClient tacoCloudClient) {
     return args -> {
-      Ingredient pico = tacoCloudClient.addIngredient(
-          new Ingredient("PICO", "Pico de Gallo", Ingredient.Type.SAUCE));
+    	Ingredient pico = new Ingredient("PICO", "Pico de Gallo", Ingredient.Type.SAUCE);
+//      Ingredient pico = tacoCloudClient.addIngredient(
+//          new Ingredient("PICO", "Pico de Gallo", Ingredient.Type.SAUCE));
       List<Ingredient> allIngredients = tacoCloudClient.getAllIngredients();
       log.info("----------------------- ALL INGREDIENTS AFTER SAVING PICO -------------------------");
       for (Ingredient ingredient : allIngredients) {
         log.info("   -  " + ingredient);
       }
+      log.info("----------------------- ALL INGREDIENTS AFTER call deleteIngredient -------------------------");
       tacoCloudClient.deleteIngredient(pico);
+      log.info("----------------------- ALL INGREDIENTS AFTER END -------------------------");
     };
   }
   

@@ -1,29 +1,24 @@
 package tacos.web.api;
 
-import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.PagedResources;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.ResourceProcessor;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.RepresentationModelProcessor;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.stereotype.Component;
 
 import tacos.Taco;
 
 @Component
-public class TacoResourcesProcessor implements ResourceProcessor<PagedResources<Resource<Taco>>> {
+public class TacoResourcesProcessor implements RepresentationModelProcessor<PagedModel<EntityModel<Taco>>> {
 
-  private final EntityLinks entityLinks;
-  
-  public TacoResourcesProcessor(EntityLinks entityLinks) {
-    this.entityLinks = entityLinks;
-  }
-  
   @Override
-  public PagedResources<Resource<Taco>> process(PagedResources<Resource<Taco>> resources) {
-    resources
-      .add(entityLinks
-          .linkFor(Taco.class)
-          .slash("recent")
-          .withRel("recents"));
+  public PagedModel<EntityModel<Taco>> process(PagedModel<EntityModel<Taco>> resources) {
+	  resources.add(
+		        WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(Taco.class))
+		        .slash("recent")
+		        .withRel("recents")
+		    );
     
     return resources;
   }
