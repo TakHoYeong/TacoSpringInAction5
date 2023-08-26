@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { CartService } from './cart-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import { Taco } from './taco.model'; 
 
 @Component({
   selector: 'taco-cart',
@@ -19,7 +20,8 @@ export class CartComponent implements OnInit {
     ccNumber: '',
     ccExpiration: '',
     ccCVV: '',
-    tacos: []
+	deliveryCity: '', // 이 줄을 추가합니다.
+    tacos: [] as any[]
   };
 
   constructor(private cart: CartService, private httpClient: HttpClient) {

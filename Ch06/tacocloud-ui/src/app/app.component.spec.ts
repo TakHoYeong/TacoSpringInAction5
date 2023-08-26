@@ -1,8 +1,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { TestBed, async } from '@angular/core/testing';
-
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -24,9 +23,6 @@ import { GroupBoxComponent } from './group-box/groupbox.component';
 import { BigButtonComponent } from './big-button/bigbutton.component';
 import { LittleButtonComponent } from './little-button/littlebutton.component';
 import { LocationsComponent } from './locations/locations.component';
-import { FormGroupDirective } from '@angular/forms/src/directives/reactive_directives/form_group_directive';
-import { HttpClientModule } from '@angular/common/http';
-
 import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart-service';
 
@@ -56,7 +52,6 @@ describe('AppComponent', () => {
       imports: [
         RouterModule.forRoot(routes),
         BrowserModule,
-        HttpModule,
         HttpClientModule,
         FormsModule,
       ],
@@ -73,7 +68,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'app'`, async(() => {
+  it(`should have as title 'Taco Cloud'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Taco Cloud');
