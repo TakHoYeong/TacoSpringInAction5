@@ -1,0 +1,22 @@
+spring:
+  jms:
+    template:
+      default-destination: tacocloud.order.queue
+  artemis:
+    user: tacoweb
+    password: l3tm31n
+    embedded:
+      enabled: false
+    broker-url: localhost:61616
+
+---
+# None of these properties will actually work as configured for this profile.
+# But it is left here as an example of configuring for a production profile
+# that will override the local configuration in the default profile.
+spring:
+  profiles: production
+
+  artemis:
+    broker-url: localhost:61617
+    user: tacoweb
+    password: l3tm31n
