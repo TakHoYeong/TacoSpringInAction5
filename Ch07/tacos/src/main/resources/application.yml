@@ -24,7 +24,7 @@ spring:
     rest:
       base-path: /api
 
-#---
+  #---
 #spring:
 #  profiles: prod
   

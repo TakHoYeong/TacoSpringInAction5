@@ -1,4 +1,4 @@
-package tacos.restclient;
+package tacos.messaging;
 
 import java.net.URI;
 import java.util.List;

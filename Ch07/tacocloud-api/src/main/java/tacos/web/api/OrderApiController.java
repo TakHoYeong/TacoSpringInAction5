@@ -26,19 +26,21 @@ import tacos.data.OrderRepository;
 public class OrderApiController {
 
   private OrderRepository repo;
+  private OrderMessagingService orderMessages;
 
-  public OrderApiController(OrderRepository repo) {
+  public OrderApiController(OrderRepository repo, OrderMessagingService orderMessages) {
     this.repo = repo;
   }
-  
+
   @GetMapping(produces="application/json")
   public Iterable<Order> allOrders() {
     return repo.findAll();
   }
-  
+
   @PostMapping(consumes="application/json")
   @ResponseStatus(HttpStatus.CREATED)
   public Order postOrder(@RequestBody Order order) {
+    orderMessages.sendOrder(order);
     return repo.save(order);
   }
 
@@ -50,7 +52,7 @@ public class OrderApiController {
   @PatchMapping(path="/{orderId}", consumes="application/json")
   public Order patchOrder(@PathVariable("orderId") Long orderId,
                           @RequestBody Order patch) {
-    
+
     Order order = repo.findById(orderId).get();
     if (patch.getDeliveryName() != null) {
       order.setDeliveryName(patch.getDeliveryName());
@@ -78,7 +80,7 @@ public class OrderApiController {
     }
     return repo.save(order);
   }
-  
+
   @DeleteMapping("/{orderId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteOrder(@PathVariable("orderId") Long orderId) {
